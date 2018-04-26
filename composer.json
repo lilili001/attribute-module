@@ -1,7 +1,7 @@
 {
 	"name": "ast/attribute-module",
 	"description": "",
-    "type": "asgard-module",
+    "type": "laravel-module",
     "license": "MIT",
     "require": {
         "php": ">=5.6.4",
