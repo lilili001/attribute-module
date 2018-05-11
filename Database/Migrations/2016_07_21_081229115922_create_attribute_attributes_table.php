@@ -21,9 +21,11 @@ class CreateAttributeAttributesTable extends Migration
             $table->boolean('is_for_sku');
             $table->boolean('is_for_sale');
             $table->integer('attrset_id');
+
             $table->tinyInteger('is_filterable')->default(0);
             $table->tinyInteger('is_visible_on_front')->default(0);
             $table->integer('position')->default(0);
+
             $table->text('options')->nullable();
             $table->boolean('is_enabled');
             $table->boolean('has_translatable_values');
