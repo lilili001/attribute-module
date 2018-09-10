@@ -27,7 +27,8 @@ class Attribute extends Model
         'is_for_sale',
         'is_visible_on_front',
         'is_filterable',
-        'position'
+        'position',
+        'size_headers'
     ];
 
     protected $hidden = ['created_at','updated_at'];

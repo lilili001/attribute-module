@@ -30,7 +30,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.attribute.attribute.update', $attribute->id], 'method' => 'put']) !!}
+    {!! Form::open(['route' => ['admin.attribute.attribute.update', $attribute->id], 'method' => 'put','id'=>'inputForm' ]) !!}
     <div class="row">
         <div class="col-md-9">
             <div class="nav-tabs-custom">
@@ -80,6 +80,7 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
@@ -87,8 +88,15 @@
                     <h3 class="box-title">{{ trans('attribute::attributes.configuration') }}</h3>
                 </div>
                 <div class="box-body">
+
+                    @if( $attribute->key == 'size' )
                     <div class="row">
-                        <div class="col-md-6">
+                        <size-header langs="{{json_encode(LaravelLocalization::getSupportedLocales())}}" size-header-form-values="{{$attribute->size_headers}}"></size-header>
+                    </div>
+                    @endif
+
+                    <div class="row">
+                        <div class="col-md-4">
                             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
                                 {!! Form::label('type', trans('attribute::attributes.type')) !!}
                                 <select class="form-control jsTypeSelection" name="type" id="type">
@@ -102,7 +110,7 @@
                                 {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
                             </div>
                         </div>
-                        <div class="col-md-6" style="margin-top: 25px">
+                        <div class="col-md-8" style="margin-top: 22px">
                             @include('attribute::admin.attributes.partials.options_create')
                         </div>
                     </div>
@@ -146,6 +154,12 @@
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
             });
+
+            $('button[type="submit"]').click(function(){
+                $("#inputForm").validate({ ignore: [] });
+            })
+
+
         });
     </script>
 @stop

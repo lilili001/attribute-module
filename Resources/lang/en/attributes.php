@@ -27,6 +27,7 @@ return [
     'select a type' => 'Select a type ...',
     'option label' => 'Option label',
     'option value' => 'Option value',
+    'size_headers' => 'Size Headers',
     'types' => [
         'checkbox' => 'Checkbox',
         'input' => 'Input',

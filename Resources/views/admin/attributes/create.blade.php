@@ -30,7 +30,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.attribute.attribute.store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['admin.attribute.attribute.store'], 'method' => 'post' ,'id'=>'inputForm']) !!}
     <div class="row">
         <div class="col-md-9">
             <div class="nav-tabs-custom">
@@ -84,8 +84,13 @@
                     <h3 class="box-title">{{ trans('attribute::attributes.configuration') }}</h3>
                 </div>
                 <div class="box-body">
+
+                    <div class="row sizeHeaders hide">
+                        <size-header langs="{{json_encode(LaravelLocalization::getSupportedLocales())}}"></size-header>
+                    </div>
+
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
                                 {!! Form::label('type', trans('attribute::attributes.type')) !!}
                                 <select class="form-control jsTypeSelection" name="type" id="type">
@@ -99,7 +104,7 @@
                                 {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
                             </div>
                         </div>
-                        <div class="col-md-6" style="margin-top: 25px">
+                        <div class="col-md-8" style="margin-top: 22px">
                             @include('attribute::admin.attributes.partials.options_create')
                         </div>
                     </div>
@@ -142,6 +147,19 @@
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
+            });
+
+
+            $('button[type="submit"]').click(function(){
+                $("#inputForm").validate({ ignore: [] });
+            });
+
+            $('[name="key"]').keyup(function(){
+                console.log($(this).val() )
+                if( $(this).val() == 'size' ){
+                    console.log('yes')
+                    $('.sizeHeaders').removeClass('hide')
+                }
             });
         });
     </script>
